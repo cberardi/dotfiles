@@ -1,2 +1,0 @@
-# dotfiles
-Unix configuration files
