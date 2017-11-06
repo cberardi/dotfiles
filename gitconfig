@@ -1,0 +1,5 @@
+[user]
+	email = 7231842+cberardi@users.noreply.github.com
+	name = Chris Berardi
+[core]
+	excludesfile = ~/.gitignore

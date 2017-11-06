@@ -1,0 +1,106 @@
+# .shrc - bourne shell startup file (FreeBSD)
+#
+# This file will be used if the shell is invoked for interactive use and
+# the environment variable ENV is set to this file.
+#
+# see also sh(1), environ(7).
+#
+
+case $- in *i*)
+  # file permissions: rwxr-xr-x
+  #
+  umask 022
+
+  set -o emacs
+  set -o ignoreeof
+  set -o noclobber
+
+  # blocksize is kilobytes
+  export BLOCKSIZE=K
+
+  # use vi as default editor 
+  export EDITOR=vi
+
+  # prevent less from saving a history file in $HOME
+  export LESSHISTFILE=-
+
+  # for colorized ls, mimic's Linux GNU ls colors
+  export LSCOLORS=ExGxBxDxCxHxDxBxGxExEx
+
+  # NOTE: designate $HOME/.bin as the location for user executables
+  export PATH=$PATH:$HOME/.bin
+
+  # use less as default pager
+  export PAGER=less
+
+  # make life easier when working with subversion
+  export SVNREPO=http://vmsubvsvr-01.nj.pmcsystems.com:8080/svn/SvnRepo
+
+  # PuTTY seems to default to xterm
+  export TERM=xterm-256color
+  #export TERM=cons25
+
+  # prompt
+  #export PS1='\H\$ '
+  #export PS1='\H:\w\$ '
+
+  # aliases
+  alias h='fc -l'   # fc is a builtin
+  alias j='jobs -l' # jobs is a builtin
+  alias p=$PAGER
+
+  alias cp='/bin/cp -iR'
+  alias hx='fc -s'  # fc is a builtin
+  alias mv='/bin/mv -i'
+  alias su='/usr/bin/su -m'
+
+  alias l.='/bin/ls -GFhd .*'
+  alias ls='/bin/ls -GFh'
+  alias la='/bin/ls -GFha'
+  alias ll='/bin/ls -GFhil'
+  alias lla='/bin/ls -GFhail'
+
+  alias grep='/usr/bin/grep -n --color=auto'
+  alias egrep='/usr/bin/grep -n --color=auto'
+  alias fgrep='/usr/bin/grep -n --color=auto'
+
+  alias date="/bin/date '+%A %D %d, %Y   %I:%M:%S %p'"
+  alias utc="/bin/date -u '+%Y-%m-%d %H:%M:%S'"
+
+  alias less='/usr/bin/less -M'
+  alias ping='/sbin/ping -c5'
+  alias quit='exit'  # exit is a builtin
+  alias vless='/usr/local/share/vim/vim74/macros/less.sh'
+
+  alias lua='/usr/local/bin/lua53'
+  alias python='/usr/local/bin/python3.5'
+  alias pip='/usr/local/bin/pip3.5'
+
+  alias svn='/usr/bin/svnlite'
+  alias svnadmin='/usr/bin/svnliteadmin'
+  alias svndumpfilter='/usr/bin/svnlitedumpfilter'
+  alias svnlook='/usr/bin/svnlitelook'
+  alias svnmucc='/usr/bin/svnlitemucc'
+  alias svndump='/usr/bin/svnliterdump'
+  alias svnserve='/usr/bin/svnliteserve'
+  alias svnsync='/usr/bin/svnlitesync'
+  alias svnversion='/usr/bin/svnliteversion'
+
+  # these require more than a simple alias
+  commands() { # list all commands in path matching $1
+    files=
+    paths=`echo $PATH | sed -e "s/:/\/$1* /g"`/$1*  # XXX: trailing $1* is necessary because $PATH doesn't end in ':'
+    for f in `/bin/ls $paths 2> /dev/null`
+    do
+      files=$files:`basename $f`
+    done
+    echo $files | tr ':' '\n' | uniq | sort | column
+  }
+  lanum() { # count total files in directory (including dot files)
+    /bin/ls -A $1 | /usr/bin/wc -l
+  }
+  lsnum() { # count total files in directory (only non-hidden files)
+    /bin/ls    $1 | /usr/bin/wc -l
+  }
+;;
+esac
