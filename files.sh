@@ -4,6 +4,7 @@
 files=
 files=$files+cshrc
 files=$files+exrc
+files=$files+gitconfig
 files=$files+gitignore
 files=$files+tmux.conf
 files=$files+usr
