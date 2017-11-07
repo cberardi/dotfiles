@@ -23,11 +23,11 @@ if ( $?prompt ) then    # NOTE: only interactive shells set $prompt
   set rmstar
   set savehist   = (1000 merge)
 
-  #if ($?tcsh) then
-  #  bindkey "^W"    backward-delete-word
-  #  bindkey -k up   history-search-backward
-  #  bindkey -k down history-search-forward
-  #endif
+  if ($?tcsh) then
+    bindkey "^W"    backward-delete-word
+    bindkey -k up   history-search-backward
+    bindkey -k down history-search-forward
+  endif
 
   # NOTE: designated $HOME/.usr/bin as location for personal executables
   set path = ($HOME/.usr/bin $path)
