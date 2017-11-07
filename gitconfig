@@ -3,3 +3,5 @@
 	name = Chris Berardi
 [core]
 	excludesfile = ~/.gitignore
+[credential]
+	helper = cache --timeout=3600
