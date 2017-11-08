@@ -44,6 +44,9 @@ if ( $?prompt ) then    # NOTE: only interactive shells set $prompt
   # prevent less from saving a history file in $HOME
   setenv LESSHISTFILE -
 
+  # use less as the pager for man and make sure it shows the right status
+  setenv MANPAGER 'less -M +Gg'
+
   # prompt settings
   # 
   # regular prompt is current directory + %
