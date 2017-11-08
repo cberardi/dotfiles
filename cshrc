@@ -34,7 +34,7 @@ if ( $?prompt ) then    # NOTE: only interactive shells set $prompt
 
   # NOTE: system manpage location retrieved from /etc/manpaths
   # NOTE: designated $HOME/.usr/man as location for personal manpages
-  setenv MANPATH $HOME/.usr/man:/usr/share/man:/usr/local/share/man
+  setenv MANPATH $HOME/.usr/man:/usr/share/man:/usr/local/man
 
   # for colorized ls, mimic's Linux GNU ls colors
   # NOTE: softened blue and cyan in Terminal.app profile's ANSI colors
