@@ -99,6 +99,7 @@ if ( $?prompt ) then    # NOTE: only interactive shells set $prompt
 
       alias lua    '/usr/local/bin/lua53'
       alias luac   '/usr/local/bin/luac53'
+      alias python '/usr/local/bin/python3.7'
       alias sqlite '/usr/local/bin/sqlite3'
 
       breaksw
